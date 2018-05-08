@@ -1,0 +1,73 @@
+﻿<Application x:Class="OneClickDelivery.DeliveryOrderSystem.Windows.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:OneClickDelivery.DeliveryOrderSystem.Windows"
+             xmlns:ak="clr-namespace:AKSoftware.UserInterfaces.Controls;assembly=AKSoftware.UserInterfaces.Controls"
+             StartupUri="Windows/WelcomeWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="MainColor" Color="Red"></SolidColorBrush>
+        <SolidColorBrush x:Key="AccentColor" Color="Blue"></SolidColorBrush>
+        
+        
+        <!-- Styles for the application -->
+        <Style x:Key="textBoxLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="5,2,0,2"/>
+        </Style>
+        
+        <!-- Sttyle for label title -->
+        <Style x:Key="titleLabelStyle" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        
+        <!-- Styles for login Textbox-->
+        <Style x:Key="loginTextBoxStyle" TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="BorderThickness" Value="1.1"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            
+            <!-- Triggers -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#55FFFFFF"/>
+                </Trigger>
+
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#AAFFFFFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!-- Style for the check box -->
+        <Style x:Key="checkBoxStyle" TargetType="CheckBox">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        
+        <!-- Style for the Default Button -->
+        <Style x:Key="defaultButtonStyle" TargetType="ak:DefaultButton">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Margin" Value="20 10"/>
+            <Setter Property="Width" Value="125"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+    </Application.Resources>
+</Application>

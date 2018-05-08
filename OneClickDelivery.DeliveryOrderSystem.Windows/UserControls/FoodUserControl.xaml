@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="OneClickDelivery.DeliveryOrderSystem.Windows.UserControls.FoodUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OneClickDelivery.DeliveryOrderSystem.Windows.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="175" d:DesignWidth="150" MinHeight="175" MinWidth="125" MaxHeight="175" MaxWidth="150" Foreground="Black">
+    <Grid x:Name="mainGrid"
+          Cursor="Hand"
+          MouseDown="mainGrid_MouseDown">
+
+        <!-- Set the Triggers of the  Grid-->
+        <Grid.Triggers>
+            <!-- Mouse Enter animation -->
+            <EventTrigger RoutedEvent="MouseEnter">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Effect.ShadowDepth" To="15"
+                                             Duration="0:0:.3"/>
+                            <DoubleAnimation Storyboard.TargetName="btnRemove" Storyboard.TargetProperty="Opacity" To="1"
+                                             Duration="0:0:.3"/>
+                            <ThicknessAnimation Storyboard.TargetName="alertGrid" Storyboard.TargetProperty="Margin" To="12,138,12,12" Duration="0:0:.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+
+            <!-- Mouse Leave animation -->
+            <EventTrigger RoutedEvent="MouseLeave">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Effect.ShadowDepth" To="0"
+                                             Duration="0:0:.3"/>
+                            <DoubleAnimation Storyboard.TargetName="btnRemove" Storyboard.TargetProperty="Opacity" To="0.0"
+                                             Duration="0:0:.3"/>
+                            <ThicknessAnimation Storyboard.TargetName="alertGrid" Storyboard.TargetProperty="Margin" To="12,175,12,12" Duration="0:0:.3"/>
+                        </Storyboard>
+
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+
+        </Grid.Triggers>
+
+        <Border x:Name="border"
+                Margin="10"
+                BorderThickness="2"
+                BorderBrush="White"
+                Background="#55FFFFFF">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="15" Color="#77000000"/>
+            </Border.Effect>
+
+        </Border>
+        <Grid Margin="10">
+            <!-- Set the Rows -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Image -->
+            <Image x:Name="imgCover"
+                   Margin="2" 
+                   Source="/OneClickDelivery.DeliveryOrderSystem.Windows;component/Images/MenuSections/Sandwiches.jpg"
+                   Stretch="UniformToFill"/>
+
+            <!-- Name -->
+            <TextBlock x:Name="lblName"
+                       FontSize="17"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap"
+                       Margin="5"
+                       Grid.Row="1"
+                       Text="Sandwiches"/>
+
+            <!-- MenuSectionName -->
+            <TextBlock x:Name="lblMenuSection"
+                       FontSize="12"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Bottom"
+                       TextWrapping="Wrap"
+                       Margin="5"
+                       Grid.Row="2"
+                       Text="Sandwiches"/>
+        </Grid>
+
+        <!-- Close Border -->
+        <Label x:Name="btnRemove"
+               Background="Red"
+               Content="X"
+               Margin="12"
+               FontSize="10"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Width="25"
+               Height="25"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               Opacity="0"
+               Foreground="White"
+               MouseDown="btnRemove_MouseDown"
+               RenderTransformOrigin="0.5,0.5">
+            <!-- Set the triggers of the remove button -->
+            <Label.Triggers>
+                <!-- Mouse Enter -->
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Width" To="35" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Height" To="35" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                
+                <!-- Mouse Leave -->
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Width" To="25" 
+Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Height" To="25" 
+Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Label.Triggers>
+        </Label>
+
+        
+        <!--Grid of the more details -->
+        <Grid Background="Blue" 
+              Margin="12,175,12,12"
+              VerticalAlignment="Top"
+              x:Name="alertGrid">
+            <TextBlock Text="Click for Details"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="7"
+                       Foreground="White"/>
+        </Grid>
+              
+    </Grid>
+</UserControl>

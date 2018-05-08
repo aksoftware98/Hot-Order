@@ -1,0 +1,112 @@
+﻿<Window x:Class="OneClickDelivery.DeliveryOrderSystem.Windows.Windows.WelcomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OneClickDelivery.DeliveryOrderSystem.Windows.Windows"
+        xmlns:controls="clr-namespace:AKSoftware.UserInterfaces.Controls;assembly=AKSoftware.UserInterfaces.Controls"
+        mc:Ignorable="d"
+        Title="WelcomeWindow" Height="750" Width="750" WindowState="Maximized" Foreground="White" MinHeight="750" MinWidth="850">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Background -->
+        <Image Source="/OneClickDelivery.DeliveryOrderSystem.Windows;component/Images/Background2.jpg" Stretch="UniformToFill" >
+            <Image.Effect>
+                <BlurEffect Radius="15"/>
+            </Image.Effect>
+        </Image>
+
+        <Grid Background="#8C000000"/>
+
+        <!-- Our Logo -->
+        <StackPanel Margin="200 80 200 0">
+            <Image Source="/OneClickDelivery.DeliveryOrderSystem.Windows;component/Images/ak.png"
+                   Width="200"/>
+
+            
+            <Grid Margin="20">
+                  <Border CornerRadius="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="350"
+                          Height="300"
+                          Padding="20"
+                    Background="#88FFFFFF">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="20"/>
+                    </Border.Effect>
+                </Border>
+
+                <!-- Login Section -->
+                <Grid Width="350">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!-- Title -->
+                    <Label x:Name="lblTitle"
+                           Content="Welcome to Delivery Orders System"
+                           Style="{DynamicResource titleLabelStyle}"
+                           Grid.Row="0"/>
+                    
+                    <!-- Username Section -->
+                    <Label x:Name="lblEmail" 
+                           Style="{DynamicResource textBoxLabelStyle}"
+                           Content="Username:"
+                           Foreground="Black"
+                           Grid.Row="1"/>
+                    
+                    <!-- Textbox -->
+                    <TextBox x:Name="txtUsername" 
+                             Grid.Row="2"
+                             Style="{DynamicResource loginTextBoxStyle}"/>
+
+                    <!-- Password Section -->
+                    <Label x:Name="lblPassword" 
+                           Style="{DynamicResource textBoxLabelStyle}"
+                           Content="Password:"
+                           Foreground="Black"
+                           Grid.Row="3"/>
+
+                    <!-- Textbox -->
+                    <TextBox x:Name="txtPassword" 
+                             Grid.Row="4"
+                             Style="{DynamicResource loginTextBoxStyle}"/>
+                    
+                    <!-- Remember Me Check box -->
+                    <CheckBox x:Name="rememberMeCb"
+                              IsChecked="True"
+                              Content="Remember Me"
+                              Style="{DynamicResource checkBoxStyle}"
+                              Grid.Row="5"/>
+                    
+                    <!-- Login Button -->
+                    <controls:DefaultButton x:Name="btnLogin"
+                                            Content="Login"
+                                            Grid.Row="6"
+                                            Style="{DynamicResource defaultButtonStyle}"
+                                            Click="btnLogin_Click"/>
+                </Grid>
+            </Grid>
+          
+        </StackPanel>
+
+        <Grid Grid.Row="1" 
+              Background="{DynamicResource AccentColor}">
+            <TextBlock Text="Powered by AK Software 2018" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Margin="5"/>
+        </Grid>
+    </Grid>
+</Window>

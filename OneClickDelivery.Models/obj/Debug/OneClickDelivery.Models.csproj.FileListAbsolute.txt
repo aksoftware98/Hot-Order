@@ -1,0 +1,11 @@
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Models\bin\Debug\OneClickDelivery.Models.dll.config
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Models\bin\Debug\OneClickDelivery.Models.dll
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Models\bin\Debug\OneClickDelivery.Models.pdb
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Models\bin\Debug\EntityFramework.dll
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Models\bin\Debug\EntityFramework.SqlServer.dll
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Models\bin\Debug\EntityFramework.xml
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Models\obj\Debug\OneClickDelivery.Models.csprojResolveAssemblyReference.cache
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Models\obj\Debug\OneClickDelivery.Models.csproj.CoreCompileInputs.cache
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Models\obj\Debug\OneClickDelivery.Models.dll
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Models\obj\Debug\OneClickDelivery.Models.pdb

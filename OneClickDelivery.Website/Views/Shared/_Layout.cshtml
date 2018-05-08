@@ -1,0 +1,286 @@
+﻿
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from coderthemes.com/minton/dark_light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Mar 2018 19:54:30 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <title>@ViewBag.Title | WWAPP CMS</title>
+
+    <!-- Multi select and tags and date picker -->
+    <link href="~/Content/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="~/Content/plugins/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <link href="~/Content/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="~/Content/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Files of upload files widgets -->
+    <link href="~/Content/plugins/dropzone/dropzone.css" rel="stylesheet" />
+
+    <!-- DataTables -->
+    <link href="~/Content/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!--Form Wizard-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/jquery.steps/css/jquery.steps.css" />
+
+    <!-- Main libraries of the template -->
+    <link href="~/Content/plugins/switchery/switchery.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/plugins/morris/morris.css">
+
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/assets/css/style.css" rel="stylesheet" type="text/css">
+
+    <script src="~/Content/assets/js/modernizr.min.js"></script>
+
+</head>
+
+
+<body class="fixed-left">
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- Top Bar Start -->
+        <div class="topbar">
+
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <div class="text-center">
+                    <a href="@Url.Action("Index","Home")" class="logo"><i class="mdi mdi-pizza"></i> <span>Hot-Order</span></a>
+                </div>
+            </div>
+
+            <!-- Button mobile view to collapse sidebar menu -->
+            <nav class="navbar-custom">
+                <ul class="list-inline float-right mb-0">
+
+                    <li class="list-inline-item notification-list hide-phone">
+                        <a class="nav-link waves-light waves-effect" href="#" id="btn-fullscreen">
+                            <i class="mdi mdi-crop-free noti-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <img src="~/Content/assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5 class="text-overflow"><small>Welcome ! John</small> </h5>
+                            </div>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="mdi mdi-account"></i> <span>Profile</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="mdi mdi-settings"></i> <span>Settings</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="mdi mdi-lock-open"></i> <span>Lock Screen</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="mdi mdi-logout"></i> <span>Logout</span>
+                            </a>
+
+                        </div>
+                    </li>
+
+                </ul>
+
+                <ul class="list-inline menu-left mb-0">
+                    <li class="float-left">
+                        <button class="button-menu-mobile open-left waves-light waves-effect">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                    </li>
+                </ul>
+
+            </nav>
+
+        </div>
+
+        <!-- Top Bar End -->
+        <!-- ========== Left Sidebar Start ========== -->
+
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <!--- Divider -->
+                <div id="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Home")" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> Dashboard </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Menu")" class="waves-effect waves-primary">
+                                <i class="ti-menu"></i><span> Menu </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Offers")" class="waves-effect waves-primary">
+                                <i class="fa fa-percent"></i><span> Offers </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Discounts")" class="waves-effect waves-primary">
+                                <i class="ti-alarm-clock"></i><span> Discounts </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Orders")" class="waves-effect waves-primary">
+                                <i class="ti-shopping-cart"></i><span> Orders </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Settings")" class="waves-effect waves-primary">
+                                <i class="ti-settings"></i><span> Settings </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Reports")" class="waves-effect waves-primary">
+                                <i class="fa fa-file-excel-o"></i><span> Reports </span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container">
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- end content -->
+
+            <footer class="footer">
+                @DateTime.Now.Year © VRoad <span class="hide-phone">- vroad-me.com</span>
+            </footer>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- /Right-bar -->
+
+    </div>
+    <!-- END wrapper -->
+    <script>
+        var resizefunc = [];
+    </script>
+
+    <!-- Plugins  -->
+    <script src="~/Content/assets/js/jquery.min.js"></script>
+    <script src="~/Content/assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
+    <script src="~/Content/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/detect.js"></script>
+    <script src="~/Content/assets/js/fastclick.js"></script>
+    <script src="~/Content/assets/js/jquery.slimscroll.js"></script>
+    <script src="~/Content/assets/js/jquery.blockUI.js"></script>
+    <script src="~/Content/assets/js/waves.js"></script>
+    <script src="~/Content/assets/js/wow.min.js"></script>
+    <script src="~/Content/assets/js/jquery.nicescroll.js"></script>
+    <script src="~/Content/assets/js/jquery.scrollTo.min.js"></script>
+    <script src="~/Content/plugins/switchery/switchery.min.js"></script>
+
+
+    <!-- Dropzone js -->
+    <script src="~/Content/plugins/dropzone/dropzone.js"></script>
+
+    <!-- Date Picker and Select and Tags -->
+    <script src="~/Content/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/multiselect/js/jquery.multi-select.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/jquery-quicksearch/jquery.quicksearch.js"></script>
+    <script src="~/Content/plugins/select2/js/select2.min.js" type="text/javascript"></script>
+    <script src="~/Content/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
+    <script src="~/Content/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js" type="text/javascript"></script>
+
+    <script src="~/Content/plugins/moment/moment.js"></script>
+    <script src="~/Content/plugins/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    <script src="~/Content/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <script src="~/Content/assets/pages/jquery.form-advanced.init.js"></script>
+    <!--Form Wizard-->
+    <script src="~/Content/plugins/jquery.steps/js/jquery.steps.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../plugins/jquery-validation/js/jquery.validate.min.js"></script>
+
+    <!-- Required datatable js -->
+    <script src="~/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Custom main Js -->
+    <script src="~/Content/assets/js/jquery.core.js"></script>
+    <script src="~/Content/assets/js/jquery.app.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('.counter').counterUp({
+                delay: 100,
+                time: 1200
+            });
+            $('.circliful-chart').circliful();
+        });
+
+        // BEGIN SVG WEATHER ICON
+        if (typeof Skycons !== 'undefined') {
+            var icons = new Skycons(
+                { "color": "#3bafda" },
+                { "resizeClear": true }
+            ),
+                list = [
+                    "clear-day", "clear-night", "partly-cloudy-day",
+                    "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+                    "fog"
+                ],
+                i;
+
+            for (i = list.length; i--;)
+                icons.set(list[i], list[i]);
+            icons.play();
+        };
+
+    </script>
+
+    @RenderSection("Scripts", false)
+
+</body>
+
+<!-- Mirrored from coderthemes.com/minton/dark_light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Mar 2018 19:55:52 GMT -->
+</html>
