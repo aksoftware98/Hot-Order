@@ -12,6 +12,7 @@ namespace OneClickDelivery.Models
         // Relationship with restuan
         public Resturant Resturant { get; set; }
         public int ResturantId { get; set;  }
+        
     }
     
 }

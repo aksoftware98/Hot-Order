@@ -1,0 +1,38 @@
+﻿@model OneClickDelivery.Website.ViewModels.MessageViewModel
+@using OneClickDelivery.Website.ViewModels
+
+@if (Model.Message != "")
+{
+    <!-- Alert Message -->
+<div class="col-md-8">
+
+    @switch (Model.MessageType)
+    {
+        case MessageType.Success:
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                @Model.Message.
+            </div>
+            break;
+        case MessageType.Info:
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                @Model.Message.
+            </div>
+            break;
+        case MessageType.Warning:
+            <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                @Model.Message.
+            </div>
+            break;
+        case MessageType.Error:
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                @Model.Message .
+            </div>
+            break;
+    }
+
+</div>
+}

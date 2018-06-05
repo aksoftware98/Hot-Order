@@ -19,6 +19,10 @@ namespace OneClickDelivery.Models
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
 
+        [Required]
+        [StringLength(40)]
+        public string UserId { get; set; }
+
         public virtual List<Item> Items { get; set; }
     }
     

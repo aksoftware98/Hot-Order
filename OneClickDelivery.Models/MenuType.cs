@@ -11,6 +11,9 @@ namespace OneClickDelivery.Models
         [Required]
         public string Name { get; set; }
 
+        [StringLength(160)]
+        [Required]
+        public string PicturePath { get; set; }
 
         public List<MenuSection> MenuSections { get; set; }
     }

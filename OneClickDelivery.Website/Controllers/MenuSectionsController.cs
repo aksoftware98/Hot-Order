@@ -1,136 +1,122 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
+﻿using Microsoft.AspNet.Identity;
 using OneClickDelivery.Models;
 using OneClickDelivery.Website.Models;
 using OneClickDelivery.Website.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace OneClickDelivery.Website.Controllers
 {
+    [Authorize(Roles = "Admin,Resturant")]
     public class MenuSectionsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationDbContext db = new ApplicationDbContext();
+
+        string userId = string.Empty;
+        
 
         // GET: MenuSections
         public ActionResult Index()
         {
-            var menuSections = db.MenuSections.Include(m => m.Menu).Include(m => m.MenuType);
-            return View(menuSections.ToList());
-        }
-
-        // GET: MenuSections/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MenuSection menuSection = db.MenuSections.Find(id);
-            if (menuSection == null)
-            {
-                return HttpNotFound();
-            }
+            // Get the user Id 
+            userId = User.Identity.GetUserId();
 
             MenuSectionViewModel vm = new MenuSectionViewModel();
-            vm.MenuSection = menuSection;
-            vm.Food = db.Items.OfType<Food>().Where(f => f.MenuSectionId == id).ToList(); 
+            var resturant = db.Resturants.FirstOrDefault(r => r.UserId == userId);
+            vm.Resturant = resturant;
+            vm.Message = new MessageViewModel { Message = "This is the page of the menu types of the resturant " + resturant.Name, MessageType = MessageType.Info }; 
+            // Get the menu of the resturant Id 
+            var menu = db.Menus.FirstOrDefault(m => m.Resturant.UserId == userId);
+            if (menu != null)
+                vm.MenuSections = db.MenuSections.Where(m => m.MenuId == menu.MenuId).ToList();
 
             return View(vm);
         }
 
-        // GET: MenuSections/Create
+        #region Create
+        // GET: MenuSections/Create 
         public ActionResult Create()
         {
-            // Get the menu types and send them to the User Interface 
-            MenuSectionViewModel vm = new MenuSectionViewModel();
-            vm.MenuTypes = db.MenuTypes.ToList(); 
+            // Get the user Id 
+            userId = User.Identity.GetUserId();
 
-            return View(vm);
+            MenuSectionViewModel vm = new MenuSectionViewModel();
+            // Get the menu of the resturant 
+            var resturant = db.Resturants.FirstOrDefault(r => r.UserId == userId);
+            var menu = db.Menus.FirstOrDefault(m => m.MenuId == resturant.ResturantId); 
+            
+            // Get the Menu Types only not in the resturant menus 
+            List<MenuType> menutypes = db.MenuTypes.ToList();
+            List<MenuSection> menuSections = db.MenuSections.Where(m => m.MenuId == menu.MenuId).ToList();
+
+            var menuTypesNotInMenu = new List<MenuType>(); 
+            foreach (var item in menuSections)
+            {
+                if (menutypes.Contains(item.MenuType))
+                    menutypes.Remove(item.MenuType); 
+            }
+
+            // Create the list of the select list 
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (var item in menutypes)
+            {
+                items.Add(new SelectListItem { Text = item.Name, Value = item.MenuTypeId.ToString() }); 
+            }
+
+            vm.MenuTypes = new SelectList(items, "Value", "Text");
+
+            vm.Resturant = resturant;
+
+            return View(vm); 
         }
 
         // POST: MenuSections/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(MenuSection menuSection)
+        public ActionResult Create([Bind(Include = "MenuTypeId")]MenuSectionViewModel menuSection)
         {
-            return View(menuSection);
-        }
+            // Get the user Id 
+            userId = User.Identity.GetUserId();
 
-        // GET: MenuSections/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
+            // Get the resturant and menu 
+            var resturant = db.Resturants.FirstOrDefault(r => r.UserId == userId); 
+            if(ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MenuSection menuSection = db.MenuSections.Find(id);
-            if (menuSection == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.MenuId = new SelectList(db.Menus, "MenuId", "MenuImage", menuSection.MenuId);
-            ViewBag.MenuTypeId = new SelectList(db.MenuTypes, "MenuTypeId", "Name", menuSection.MenuTypeId);
-            return View(menuSection);
-        }
+                // Create a new object of type menu section 
+                MenuSection section = new MenuSection();
+                section.MenuTypeId = menuSection.MenuTypeId;
+                section.MenuId = resturant.ResturantId;
 
-        // POST: MenuSections/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+                db.MenuSections.Add(section);
+                db.SaveChanges(); 
+
+                return RedirectToAction("Index"); 
+            }
+            return View(menuSection); 
+        }
+        #endregion
+
+        #region Delete
+
+        // POST: MenuSections/Delete/10
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MenuSectionId,MenuTypeId,MenuId")] MenuSection menuSection)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(menuSection).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.MenuId = new SelectList(db.Menus, "MenuId", "MenuImage", menuSection.MenuId);
-            ViewBag.MenuTypeId = new SelectList(db.MenuTypes, "MenuTypeId", "Name", menuSection.MenuTypeId);
-            return View(menuSection);
-        }
-
-        // GET: MenuSections/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MenuSection menuSection = db.MenuSections.Find(id);
-            if (menuSection == null)
-            {
-                return HttpNotFound();
-            }
-            return View(menuSection);
-        }
-
-        // POST: MenuSections/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
             MenuSection menuSection = db.MenuSections.Find(id);
+
             db.MenuSections.Remove(menuSection);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return RedirectToAction("Index"); 
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        #endregion
+
+
+
     }
 }

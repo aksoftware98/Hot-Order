@@ -71,10 +71,11 @@ E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDe
 E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\bin\Microsoft.AI.ServerTelemetryChannel.xml
 E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\bin\Microsoft.AI.WindowsServer.xml
 E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\bin\Microsoft.AI.Web.xml
-E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\obj\Debug\OneClickDelivery.Website.csprojResolveAssemblyReference.cache
 E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\obj\Debug\OneClickDelivery.Website.csproj.CoreCompileInputs.cache
 E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\obj\Debug\OneClickDelivery.Website.dll
 E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\obj\Debug\OneClickDelivery.Website.pdb
 E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\bin\OneClickDelivery.Models.dll
 E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\bin\OneClickDelivery.Models.pdb
 E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\bin\OneClickDelivery.Models.dll.config
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\obj\Debug\OneClickDelivery.Website.csprojAssemblyReference.cache
+E:\AK combany\Projects 2018\OneClickDelivery\Project\OneClickDelivery\OneClickDelivery.Website\obj\Debug\OneClickDelivery.Website.csproj.CopyComplete

@@ -54,8 +54,14 @@ namespace OneClickDelivery.Website.Models
             // Set one to one relationship between resturant and menu 
             modelBuilder.Entity<Resturant>().HasOptional(p => p.Menu).WithRequired(p => p.Resturant).WillCascadeOnDelete();
 
+            // Set one to may relationship between menu and menu sections 
+            modelBuilder.Entity<MenuSection>().HasRequired(p => p.Menu).WithMany(m => m.MenuSections).WillCascadeOnDelete(); 
+
             // Set one to one relationship between shopping cart and order
-            modelBuilder.Entity<ShoppingCart>().HasOptional(p => p.Order).WithRequired(p => p.ShoppingCart).WillCascadeOnDelete(); 
+            modelBuilder.Entity<ShoppingCart>().HasOptional(p => p.Order).WithRequired(p => p.ShoppingCart).WillCascadeOnDelete();
+
+            // Set one to many relationshiop between item and cart items 
+            modelBuilder.Entity<CartItem>().HasRequired(p => p.Item).WithMany(p => p.CartItems).WillCascadeOnDelete(); 
 
             // Set one to one relationship between shopping cart and order 
             //modelBuilder.Entity<Order>().HasRequired(p => p.ShoppingCart).

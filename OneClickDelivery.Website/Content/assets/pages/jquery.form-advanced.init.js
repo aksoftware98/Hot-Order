@@ -332,6 +332,11 @@ $('.colorpicker-rgba').colorpicker();
 
 // Date Picker
 jQuery('#datepicker').datepicker();
+jQuery('#datepicker2').datepicker();
+jQuery('#datepicker3').datepicker();
+jQuery('#datepicker4').datepicker();
+jQuery('#datepicker5').datepicker();
+
 jQuery('#datepicker-autoclose').datepicker({
     autoclose: true,
     todayHighlight: true

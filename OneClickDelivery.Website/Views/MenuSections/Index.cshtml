@@ -1,39 +1,89 @@
-﻿@model IEnumerable<OneClickDelivery.Models.MenuSection>
+﻿@model OneClickDelivery.Website.ViewModels.MenuSectionViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Menu Types";
 }
 
-<h2>Index</h2>
+@Html.Partial("../Shared/AlertMessage", Model.Message)
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Menu.MenuImage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MenuType.Name)
-        </th>
-        <th></th>
-    </tr>
+<div class="card-box">
+    <h2>Menu Types of The Resturant | @Model.Resturant.Name</h2>
+    <input type="hidden" name="item-to-delete" id="item-to-delete" />
+    <p>
+        <a href="@Url.Action("Create","MenuSections")" class="btn btn-success waves-effect waves-light">Add new Menu Type <i class="mdi mdi-plus-circle-outline"></i></a>
+    </p>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Menu.MenuImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MenuType.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MenuSectionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MenuSectionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MenuSectionId })
-        </td>
-    </tr>
+    <div class="row">
+        @foreach (var item in Model.MenuSections)
+        {
+            string id = "MenuSection" + item.MenuSectionId; 
+            <div class="col-sm-4 col-lg-3 col-xs-12" id="@id">
+
+                <!-- Simple card -->
+                <div class="card m-b-20">
+                    <img class="card-img-top img-fluid" src="~/@item.MenuType.PicturePath" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">@item.MenuType.Name</h4>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <a href="@Url.Action("Index","Food", new { id = item.MenuSectionId})" class="btn btn-primary btn-block">Go to Items</a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="#" class="btn btn-danger deleteButton" data-toggle="modal" data-placement="top" title="" data-id="@item.MenuSectionId" data-target="#deleteModal" data-original-title="Delete">X</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end col -->
+        }
+    </div>
+    <!-- sample modal content -->
+    <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="CenterModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="CenterModalLabel">Delete Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure to delete this Menu Type?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+                    <button type="button" id="btnDelete" class="btn btn-danger waves-effect waves-light">Delete</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $(".deleteButton").click(function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $('#item-to-delete').val(id);
+            });
+
+            $("#btnDelete").click(function () {
+                var d = $('#item-to-delete').val();
+                var url = '@Url.Action("Delete","MenuSections")/' + d;
+                $.ajax({
+                    type: "POST",
+                    url: url
+                }).done(function (data) {
+                    var name = '#MenuSection' + d;
+                    $('#deleteModal').modal('toggle');
+                    $(name).remove(); 
+                    
+                });
+                //$('<form action="' + url + '" method="POST">' +
+                //    '</form>').submit();
+            });
+        });
+    </script>
 }
-
-</table>

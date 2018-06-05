@@ -19,6 +19,10 @@ namespace OneClickDelivery.Models
         public double Cost { get; set; }
         public DateTime AddedDate { get; set; }
 
+        [Required]
+        [StringLength(40)]
+        public string UserId { get; set; }
+
         [StringLength(160)]
         [Required]
         public string ItemImage { get; set; }

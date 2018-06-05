@@ -1,0 +1,130 @@
+﻿@model OneClickDelivery.Website.ViewModels.FoodViewModel
+@using OneClickDelivery.Website.ViewModels 
+
+@{
+    ViewBag.Title = "Insert new Item";   
+}
+
+@Html.Partial("../Shared/AlertMessage", Model.Message)
+
+<div class="card-box">
+    <h2>Insert a new Food Item in the @Model.MenuSection.MenuType.Name menu</h2>
+
+    @using (Html.BeginForm("Create", "Food", FormMethod.Post, new { enctype = "Multipart/form-data", id = "form1" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 7 })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="hidden" name="Ingredients" id="ingredients" />
+                @Html.LabelFor(model => model.Ingredients, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="summernote" id="ingredientsSummerNote">
+                        Food Ingredients
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cost, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="FoodImage">Item Image</label>
+                <div class="col-md-10">
+                    <input type="file" name="FoodImage" id="FoodImage" />
+                </div>
+                <div class="col-md-4">
+                    <img id="imageTarget" style="width:100%" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4">
+                    <input type="submit" value="Insert" class="btn btn-success btn-block" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index", new { id = Model.MenuSection.MenuSectionId })
+    </div>
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 350
+            });
+            $('.summernote').summernote('code','@Html.Raw(Model.Ingredients)');
+        });
+
+
+        // Read Image
+        $("#FoodImage").change(function () {
+            var File = this.files;
+            if (File && File[0]) {
+                ReadImage(File[0]);
+            }
+
+        });
+
+        // Check on submit the form
+        $('#form1').submit(function () {
+            // Get the value from the summer note and add it to the hidden ingredients
+            var ingredients = $('.summernote').summernote('code');
+            // Set the value in the hidden field
+            $('#ingredients').val(ingredients);
+        });
+
+        // Function to read the image file
+        var ReadImage = function (file) {
+
+            var reader = new FileReader;
+            var image = new Image;
+
+            reader.readAsDataURL(file);
+            reader.onload = function (_file) {
+                image.src = _file.target.result;
+                image.onload = function () {
+                    $("#imageTarget").attr('src', _file.target.result);
+                }
+            }
+        }
+    </script>
+
+}
